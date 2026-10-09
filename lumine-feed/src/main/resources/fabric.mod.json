@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "lumine_feed",
+  "version": "${version}",
+  "name": "Lumine Feed",
+  "description": "Player-to-player feeding with recipient-controlled effect-food consent.",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "ru.lumine.feed.LumineFeed"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "26.3",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}
