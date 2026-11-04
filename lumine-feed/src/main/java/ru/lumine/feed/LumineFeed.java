@@ -83,7 +83,7 @@ public final class LumineFeed implements ModInitializer {
                         "{target}", target.getGameProfile().name()))
                         .withStyle(ChatFormatting.YELLOW), true);
                 target.sendSystemMessage(Component.literal(msg("effect.denied.target",
-                        "Еду с эффектами вам не дали: у вас это отключено. /feedtoggle on"))
+                        "Еду с эффектами вам не дали: у вас это отключено. /feedtoggle effects on"))
                         .withStyle(ChatFormatting.GRAY), true);
                 return InteractionResult.SUCCESS_SERVER;
             }
@@ -238,7 +238,7 @@ public final class LumineFeed implements ModInitializer {
         boolean changed = false;
         for (String key : p.stringPropertyNames()) {
             String old = p.getProperty(key);
-            String updated = old.replace("/feed effects on", "/feedtoggle on")
+            String updated = old.replace("/feed effects on", "/feedtoggle effects on")
                     .replace("/feed effects off", "/feedtoggle off");
             if (!old.equals(updated)) {
                 p.setProperty(key, updated);
@@ -253,7 +253,7 @@ public final class LumineFeed implements ModInitializer {
         Properties p = new Properties();
         p.setProperty("target.full", "Вы не голодны.");
         p.setProperty("effect.denied.feeder", "{target} запретил кормить себя едой с эффектами.");
-        p.setProperty("effect.denied.target", "Еду с эффектами вам не дали: у вас это отключено. /feedtoggle on");
+        p.setProperty("effect.denied.target", "Еду с эффектами вам не дали: у вас это отключено. /feedtoggle effects on");
         p.setProperty("fed.feeder", "Вы покормили {target}: {food}");
         p.setProperty("fed.target", "{feeder} покормил вас: {food}");
         p.setProperty("status", "Кормление едой с эффектами: {state}. Обычной едой вас можно кормить всегда.");

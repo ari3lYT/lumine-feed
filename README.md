@@ -1,9 +1,51 @@
+![Lumine Feed](docs/assets/cover.svg)
+
 # Lumine Feed
 
-Fabric server mod for Minecraft 26.3. Players can feed one another; the recipient controls whether effect food is allowed with `/feedtoggle`. Operators can use `/feed` and `/heal`, including targeting a named player.
+A small server-side Fabric mod that lets players feed one another, with recipient-controlled consent for food effects.
 
-This 1.1.1 port preserves the live 1.1.0 command behavior. The live JAR was inspected because the older source omitted its administrative commands. The port also requires owner-level permission for console commands and saves player consent atomically, reporting I/O failures instead of claiming success.
+[![CI](https://github.com/ari3lYT/lumine-feed/actions/workflows/ci.yml/badge.svg)](https://github.com/ari3lYT/lumine-feed/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-87bfa3)](LICENSE)
 
-Build with `./gradlew :lumine-feed:build`. Run the unit tests and SpotBugs with `./gradlew :lumine-feed:test :lumine-feed:spotbugsMain`.
+[Quick start](#quick-start) · [Architecture](docs/architecture.md) · [Development](docs/development.md) · [Русский](docs/README.ru.md)
 
-Status: the 26.3 candidate passed these checks and a local Fabric startup/command smoke test. It is staged only; the production server still runs 1.21.11. Player-to-player feeding on the copied world remains to be tested before production use.
+
+## See it
+
+![Local automated verification report](docs/screenshots/verification.png)
+
+## Behavior
+
+- Use edible food on another player to feed them; ordinary clients need no additional mod.
+- Food with special effects is refused by default until the recipient opts in.
+- `/feedtoggle effects on|off|toggle` and `/feedtoggle status` control recipient preferences.
+- Operators can use `/feed [player]` and `/heal [player]`; console commands require owner permissions.
+- Preferences are written atomically, and a persistence error is reported rather than claiming success.
+
+## Quick start
+
+**Minecraft 26.3 · Fabric Loader 0.19.5+ · Fabric API · Java 25+**
+
+```bash
+./gradlew build
+```
+
+Copy `lumine-feed/build/libs/lumine-feed-1.1.2.jar` into your server's `mods/` directory together with
+the matching Fabric API. Restart the server. Players do not need a client mod.
+
+Use food on a player. The recipient may opt into effect food with `/feedtoggle effects on`.
+Ordinary food remains available without opting into effect food. D2Gate is optional: standalone
+servers use vanilla OP checks; when D2Gate is installed, its player unlock check is also enforced.
+
+## Configuration and development
+
+[Configuration and commands](docs/configuration.md) · [Architecture](docs/architecture.md) · [Development](docs/development.md)
+
+```bash
+./gradlew :lumine-feed:test :lumine-feed:spotbugsMain
+```
+
+This public 26.3 candidate is intended for evaluation before production deployment. Automated checks
+do not replace a two-player test of actual feeding, item remainders and effect consent on your server.
+
+[Release verification and limits](docs/verification.md) · [Changelog](CHANGELOG.md)

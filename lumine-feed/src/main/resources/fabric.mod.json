@@ -15,5 +15,10 @@
     "minecraft": "26.3",
     "java": ">=25",
     "fabric-api": "*"
+  },
+  "license": "MIT",
+  "contact": {
+    "sources": "https://github.com/ari3lYT/lumine-feed",
+    "issues": "https://github.com/ari3lYT/lumine-feed/issues"
   }
 }

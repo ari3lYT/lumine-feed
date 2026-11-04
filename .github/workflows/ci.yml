@@ -1,0 +1,20 @@
+name: CI
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+      - run: ./gradlew build --no-daemon --max-workers=2
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mod-jars
+          path: lumine-feed/build/libs/*.jar

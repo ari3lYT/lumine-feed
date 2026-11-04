@@ -16,6 +16,11 @@ import org.junit.jupiter.api.Test;
 
 final class AdminFoodCommandsTest {
     @Test
+    void vanillaServersDoNotRequireTheOptionalD2GateMod() {
+        assertTrue(AdminFoodCommands.gateAllows(null));
+    }
+
+    @Test
     void replacesExistingCommandRoot() throws Exception {
         CommandDispatcher<String> dispatcher = new CommandDispatcher<>();
         dispatcher.register(LiteralArgumentBuilder.<String>literal("feed").executes(context -> 1));

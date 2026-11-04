@@ -73,6 +73,11 @@ public final class AdminFoodCommands {
         if (!source.getServer().getPlayerList().isOp(new NameAndId(player.getGameProfile()))) {
             return false;
         }
+        return gateAllows(player);
+    }
+
+    /** Standalone servers use vanilla OP checks; an installed D2Gate must also unlock the player. */
+    static boolean gateAllows(ServerPlayer player) {
         try {
             Class<?> type = Class.forName("ru.d2omg.d2gate.D2GateMod");
             Field instanceField = type.getDeclaredField("INSTANCE");
@@ -82,6 +87,8 @@ public final class AdminFoodCommands {
             Method isLocked = type.getDeclaredMethod("isLocked", ServerPlayer.class);
             isLocked.setAccessible(true);
             return Boolean.FALSE.equals(isLocked.invoke(gate, player));
+        } catch (ClassNotFoundException absentOptionalIntegration) {
+            return true;
         } catch (ReflectiveOperationException | LinkageError error) {
             return false;
         }

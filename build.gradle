@@ -46,3 +46,5 @@ subprojects {
     }
     tasks.named('test') { useJUnitPlatform() }
 }
+
+subprojects { tasks.named('jar') { from(rootProject.file('LICENSE')) } }
