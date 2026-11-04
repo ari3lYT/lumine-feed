@@ -1,3 +1,5 @@
+**English** · [Русский](development.ru.md)
+
 # Development
 
 Use JDK 25 and the checked-in Gradle wrapper. `./gradlew build` runs compilation, tests and SpotBugs.

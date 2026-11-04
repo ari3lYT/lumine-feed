@@ -1,3 +1,5 @@
+**English** · [Русский](configuration.ru.md)
+
 # Commands and files
 
 | Command | Permission / behavior |
